@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴 수정</title>
+  <style>
+    body { font-family: 'Malgun Gothic', sans-serif; background: #F9FAFB; color: #1F2937; margin: 0; }
+    main { max-width: 480px; margin: 60px auto; padding: 0 16px; }
+    form { display: flex; flex-direction: column; gap: 12px; background: #FFF;
+           border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px; }
+    input, select { padding: 10px; border: 1px solid #E5E7EB; border-radius: 6px; }
+    button { background: #92400E; color: #FFF; border: none; border-radius: 6px;
+             padding: 12px; cursor: pointer; }
+    a { color: #6B7280; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>메뉴 수정</h1>
+
+    <form method="POST" action="/menus/<%= menu.id %>/edit">
+      <input type="text" name="name" value="<%= menu.name %>" required>
+      <input type="number" name="price" value="<%= menu.price %>" min="0" required>
+      <select name="category">
+        <option <%= menu.category === "커피" ? "selected" : "" %>>커피</option>
+        <option <%= menu.category === "티" ? "selected" : "" %>>티</option>
+        <option <%= menu.category === "디저트" ? "selected" : "" %>>디저트</option>
+      </select>
+      <button type="submit">저장</button>
+    </form>
+
+    <p><a href="/menus">← 목록으로</a></p>
+  </main>
+</body>
+</html>
